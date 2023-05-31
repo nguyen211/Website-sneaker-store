@@ -1,0 +1,77 @@
+﻿@model List<WebS2TSTORE.Models.LienHe>
+@using System.Data
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1 class="mt-4">QUẢN LÝ KHÁCH HÀNG</h1>
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Mã LH</th>
+                        <th style="width: 20%">Họ Tên</th>
+                        <th style="width: 20%">Email</th>
+                        <th style="width: 10%">Số điện thoại</th>
+                        <th style="width: 15%">Tiêu đề</th>
+                        <th style="width: 30%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã liên hệ</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var n in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.maLH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.hoTen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.sdt)
+                            </td>
+                            <td>
+                                @Truncate(n.tieuDe, 100)
+                            </td>
+                            <td>
+                                @Truncate(n.noiDung, 100)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Chi tiết", "DetailCon", new { id = n.maLH }) |
+                                @Html.ActionLink("Xóa", "DelCon", new { id = n.maLH })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

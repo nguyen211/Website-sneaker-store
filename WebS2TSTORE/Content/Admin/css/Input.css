@@ -1,0 +1,12 @@
+﻿input {
+    border: none;
+    border-bottom: 2px;
+    max-width: 75%;
+}
+.form-horizontal {
+    margin-left: 30px;
+}
+textarea {
+    width: 75%;
+    height: 100px;
+}

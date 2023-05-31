@@ -1,0 +1,59 @@
+﻿@using WebS2TSTORE.Models;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Item -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+            <link href="@Url.Content("~/Content/css/details.css")" rel="stylesheet" />
+            <div class="preview col-md-6">
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="~/Content/images/@Model.image" alt="..." width="492px" height="574px" /></div>
+                    <div class="tab-pane" id="pic-2"><img src="~/Content/images/@Model.image1" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="~/Content/images/@Model.image2" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="~/Content/images/@Model.image3" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="~/Content/images/@Model.image4" /></div>
+                </div>
+                <ul class="preview-thumbnail nav nav-tabs">
+                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="~/Content/images/@Model.image" /></a></li>
+                    <li><a data-target="#pic-2" data-toggle="tab"><img src="~/Content/images/@Model.image1" /></a></li>
+                    <li><a data-target="#pic-3" data-toggle="tab"><img src="~/Content/images/@Model.image2" /></a></li>
+                    <li><a data-target="#pic-4" data-toggle="tab"><img src="~/Content/images/@Model.image3" /></a></li>
+                    <li><a data-target="#pic-5" data-toggle="tab"><img src="~/Content/images/@Model.image4" /></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">Mã: @Model.maSP</div>
+                <h1 class="display-5 fw-bolder">@Model.tenSP</h1>
+                <div class="fs-5 mb-5">
+                    <span>@String.Format("{0:0,0}", @Model.giaBan) vnđ</span>
+                </div>
+                <p class="lead">@Model.moTa</p>
+                <ul>
+                    <li>Tình trạng: @Model.tinhTrang</li>
+                    <li><span>Size: @Model.size</span></li>
+                </ul>
+                <a href="@Url.Action("Themgiohang", "Cart", new {@gMaSP = @Model.maSP, @strURL= Request.Url.ToString() } )">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        Thêm vào giỏ hàng
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Related items section-->
+@Html.Action("More", "Default")
+
+
+
+</div >
+
+
+

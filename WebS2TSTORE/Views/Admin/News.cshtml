@@ -1,0 +1,74 @@
+﻿@model List<WebS2TSTORE.Models.TinTuc>
+
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1 class="mt-4">QUẢN LÝ TIN TỨC</h1>
+<div class="card-header">
+        <p>
+            @Html.ActionLink("THÊM MỚI", "CreateNews")
+        </p>
+</div>
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body">
+            
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Mã TT</th>
+                        <th style="width: 30%">Tiêu đề</th>
+                        <th style="width: 25%">Thumnel</th>
+                        <th style="width: 40%">Nội dung</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>MÃ tin tức</th>
+                        <th>Tiêu đề</th>
+                        <th>Anh tin tức</th>
+                        <th>Nội dung</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var n in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.maTT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => n.tieuDe)
+                            </td>
+                            <td>
+                                <img src="~/Content/images/@n.image" width="120px" height="140px">
+                            </td>
+
+                            <td>
+                                @Truncate(n.noiDung, 100)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Chi tiết", "DetailNews", new { id = n.maTT }) |
+                                @Html.ActionLink("Xóa", "DelNews", new { id = n.maTT })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

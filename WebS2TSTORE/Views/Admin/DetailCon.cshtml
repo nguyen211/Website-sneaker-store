@@ -1,0 +1,73 @@
+﻿@model WebS2TSTORE.Models.LienHe
+
+@{
+    ViewBag.Title = "DetailCon";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết liện hệ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ tên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoTen)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdt)
+        </dd>
+
+        <dt>
+            Tiên đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tieuDe)
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noiDung)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Delete", "DelCon", new { id = Model.maLH }) |
+    @Html.ActionLink("Back to List", "Contact")
+</p>
+
+<style>
+    dl {
+        margin-left: 100px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>

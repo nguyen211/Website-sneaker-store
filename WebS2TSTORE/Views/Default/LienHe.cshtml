@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" type="text/css" href="./style.css" />
+<script src="./index.js"></script>
+
+
+
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <h1 class="fw-bolder">Đóng góp ý kiến</h1>
+                <p class="lead fw-normal text-muted mb-0">
+                    Chúng tôi muốn nghe từ bạn
+                </p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <div class="form-floating mb-3">
+                                <input class="form-control"
+                                       id="name"
+                                       type="text"
+                                       name="hoTen"
+                                       placeholder="Nhập tên của bạn..."
+                                       required />
+                                <label for="name">Họ tên</label>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="name:required">
+                                    @ViewData["Loi1"]
+                                </div>
+                            </div>
+
+                            <!-- Phone number input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control"
+                                       id="phone"
+                                       type="tel"
+                                       name="sdt"
+                                       placeholder="(123) 456-7890" />
+                                <label for="phone">Số điện thoại</label>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="phone:required">
+                                    Bắt buộc có số điện thoại.
+                                </div>
+                            </div>
+
+
+                            <!-- Email address input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control"
+                                       id="email"
+                                       type="email"
+                                       name="email"
+                                       placeholder="name@example.com"
+                                       required />
+                                <label for="email">Email</label>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="email:required">
+                                    Bắt buộc có email
+                                </div>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="email:email">
+                                    @ViewData["Loi2"]
+                                </div>
+                            </div>
+                            <!-- Title input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control"
+                                       id="message"
+                                       type="title"
+                                       name="tieuDe"
+                                       placeholder="Góp ý tư vấn khcáh hàng"
+                                       required />
+                                <label for="message">Tiêu đề</label>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="message:required">
+                                    @ViewData["Loi3"]
+                                </div>
+                            </div>
+                            <!-- Message input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control"
+                                          id="message"
+                                          type="text"
+                                          name="noiDung"
+                                          placeholder="Enter your message here..."
+                                          style="height: 10rem"
+                                          data-sb-validations="required"></textarea>
+                                <label for="message">Nội dụng</label>
+                                <div class="invalid-feedback"
+                                     data-sb-feedback="message:required">
+                                    Yêu cầu nhập nội dung.
+                                </div>
+                            </div>
+                            <!-- Submit Button-->
+                            <div class="d-grid">
+                                <input type="submit" class="btn btn-primary btn-lg"
+                                       id="submitButton" value="Gửi">
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+        <link href="@Url.Content("~/Content/css/Contact.css")" rel="stylesheet" />
+        <div class="ifame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.125120810274!2d106.7123030152169!3d10.801727892304358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVFAuSENNIC0gSFVURUNI!5e0!3m2!1svi!2s!4v1648993704241!5m2!1svi!2s"  
+                    width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <!-- Contact cards-->
+        <div class="row gx-5 row-cols-2 row-cols-lg-4 py-5">
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                    <i class="bi bi-chat-dots"></i>
+                </div>
+                <div class="h5 mb-2">Trò chuyện với chúng tôi</div>
+                <p class="text-muted mb-0">
+                    Trò chuyện trực tiếp với một trong những chuyên gia hỗ trợ của
+                    chúng tôi.
+                </p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="h5">Hỏi cộng đồng</div>
+                <p class="text-muted mb-0">
+                    Khám phá các diễn đàn cộng đồng của chúng tôi và giao tiếp với
+                    những khách hàng khác.
+                </p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                    <i class="bi bi-question-circle"></i>
+                </div>
+                <div class="h5">Trung tâm hổ trợ</div>
+                <p class="text-muted mb-0">
+                    Truy cặp Faq và hỗ trợ các bài viết để tìm giải pháp.
+                </p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                    <i class="bi bi-telephone"></i>
+                </div>
+                <div class="h5">Gọi cho chúng tôi</div>
+                <p class="text-muted mb-0">
+                    Gọi cho chúng tôi trong giờ làm việc bình thường tại (0793)
+                    960-152.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,186 @@
+﻿@model WebS2TSTORE.Models.SanPham
+
+@{
+    ViewBag.Title = "EditPro";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thay đổi thông tin sản phẩm</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.maSP)
+
+        <div class="form-group">
+            <h4>Mã Sản Phẩm</h4> 
+            <div class="col-md-10">
+                <div style="font:18px; padding: 5px 0 0 5px"> @ViewBag.maSP</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Tên Sản Phẩm</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tenSP)
+                @Html.ValidationMessageFor(model => model.tenSP)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Thương Hiệu</h4>
+            <div class="col-md-10">
+                @Html.DropDownList("maTH")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Ảnh Chính</h4>
+            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload" />
+                <img src="@Url.Content("~/Content/images/"+ Model.image)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Mô Tả Sản Phẩm</h4>
+            <div class="col-md-10">
+                <textarea name="Mota">@Model.moTa</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Giá Bán</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.giaBan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.giaBan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Size</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.size, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Số Lượng</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Tình Trạng Sản Phẩm</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tinhTrang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tinhTrang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Ảnh phụ 1</h4>
+            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload1" />
+                <img src="@Url.Content("~/Content/images/"+ Model.image1)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Ảnh phụ 2</h4>            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload2" />
+                <img src="@Url.Content("~/Content/images/"+ Model.image2)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Ảnh phụ 3</h4>
+            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload3" />
+                <img src="@Url.Content("~/Content/images/"+ Model.image3)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Ảnh phụ 4</h4>
+            <div class="col-md-10">
+                Chọn ảnh mới
+                <input type="file" name="fileUpload4" />
+                <img src="@Url.Content("~/Content/images/"+ Model.image4)" width="120px" /> (Ảnh hiện tại)
+                @*thong bao trung*@
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left: 50px">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<link href="~/Content/Admin/css/Input.css" rel="stylesheet" />
+
+<script>src = "https://cdn.tiny.cloud/1/jmx7ps4n0c750od8ir9unk8x3qvjy1lmvyub7r6nglqlip1g/tinymce/6/tinymce.min.js" referrerpolicy = "origin" ></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script>
+<style>
+    .col-md-10 {
+        border: none;
+        border-bottom: 2px;
+        max-width: 75%;
+    }
+
+    .form-horizontal {
+        margin-left: 30px;
+    }
+
+    textarea {
+        width: 75%;
+        height: 100px;
+    }
+
+    dl {
+        margin-left: 100px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>

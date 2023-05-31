@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebS2TSTORE.Models.ThuongHieu>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/category.css")">
+@*<script src="~/Content/js/Catalog.js"></script>*@
+<nav id="navigation">
+    <div class="col-md-12">
+        <div id="myBtnContainer">
+            <div id="myDIV">
+                <a href="@Url.Action("Category", "Default")">
+                    <button class="btn">
+                        Tất cả
+                    </button>
+                </a>
+                @foreach (var cat in Model)
+                {
+                    <a href="@Url.Action("SPTheoThuongHieu", "Default", new { id = cat.maTH}, null)">
+                        <button class="btn">
+                            @cat.tenTH
+                        </button>
+                    </a>
+                }
+            </div>
+            </div>
+        </div>
+</nav>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
+<style>
+    /* Style the active class (and buttons on mouse-over) */
+    .active, .btn:hover {
+        background-color: #666;
+        color: white;
+    }
+
+    .btn {
+        border: none;
+        outline: none;
+        padding: 12px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+        border-radius: 0.25rem;
+    }
+
+    /* ................. */
+    #navigation {
+        margin-top: 5px;
+        background: #f6f6f6;
+        border-bottom: 2px solid #44475a;
+        text-align: center;
+        padding-bottom: 5px;
+    }
+
+</style>

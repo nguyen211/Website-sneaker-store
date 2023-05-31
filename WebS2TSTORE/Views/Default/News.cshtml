@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebS2TSTORE.Models.TinTuc>
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Tin tức thời trang</h1>
+            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+        </div>
+    </div>
+</header>
+@foreach (var tt in Model)
+{
+    <!-- About section one-->
+    <section class="py-5 bg-light" id="scroll-target">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <img class="img-fluid rounded mb-5 mb-lg-0"
+                         src="~/Content/images/@tt.image"
+                         style="width: 600px; height: 400px"
+                         alt="..." />
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bolder">@tt.tieuDe</h2>
+                    <p class="lead fw-normal text-muted mb-0">
+                        @tt.noiDung
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+}

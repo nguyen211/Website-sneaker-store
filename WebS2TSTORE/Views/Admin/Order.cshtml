@@ -1,0 +1,66 @@
+﻿@model List<WebS2TSTORE.Models.DatHang>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1 class="mt-4">QUẢN LÝ ĐƠN HÀNG</h1>
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Mã Đơn Hàng</th>
+                        <th style="width: 5%">Mã Khách Hàng</th>
+                        <th style="width: 10%">Thanh toán</th>
+                        <th style="width: 30%">Tình trạng giao hàng</th>
+                        <th style="width: 25%">Ngày đặt</th>
+                        <th style="width: 25%">Ngày giao</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Mã Khách Hàng</th>
+                        <th>Đã thanh toán</th>
+                        <th>Tình trạng giao hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày giao</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var o in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.maGD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.idKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.daThanhToan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.tinhTrangGiaoHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.ngayDat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => o.ngayGiao)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Sửa", "EditOrder", new { id = o.maGD }) |
+                            @Html.ActionLink("Chi tiết", "DetailOrder", new { id = o.maGD }) |
+                            @Html.ActionLink("Xóa", "DelOrder", new { id = o.maGD })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

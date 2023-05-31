@@ -1,0 +1,135 @@
+﻿@model WebS2TSTORE.Models.SanPham
+<style>
+    .container {
+        margin-left: 50px;
+    }
+    dl {
+        margin-left: 100px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>
+@{
+    ViewBag.Title = "DelPro";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa sản phẩm</h2>
+
+<h3>Bạn có chắc muốn xóa sản phẩm?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã thương hiệu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThuongHieu.tenTH)
+        </dd>
+
+        <dt>
+            Tên sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenSP)
+        </dd>
+
+        <dt>
+            Ảnh chính
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/images/"+  Model.image)" width="120px" />
+        </dd>
+        <dt>
+            Ảnh phụ 1
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/images/"+  Model.image1)" width="120px" />
+        </dd>
+
+        <dt>
+            Ảnh phụ 2
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/images/"+  Model.image2)" width="120px" />
+        </dd>
+
+        <dt>
+            Ảnh phụ 3
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/images/"+  Model.image3)" width="120px" />
+        </dd>
+
+        <dt>
+            Ảnh phụ 4
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/images/"+  Model.image4)" width="120px" />
+        </dd>
+        <dt>
+            Mô tẻ
+        </dt>
+
+        <dd style="width:600px; text-align:justify">
+            @Html.DisplayFor(model => model.moTa)
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0}", Model.giaBan) VNĐ
+        </dd>
+
+        <dt>
+            Size
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.size)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuong)
+        </dd>
+
+        <dt>
+            Tình trạng sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhTrang)
+        </dd>
+
+    </dl>
+</div>
+<div class="container">
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

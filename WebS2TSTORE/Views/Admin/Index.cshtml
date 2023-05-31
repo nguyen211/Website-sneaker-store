@@ -1,0 +1,134 @@
+﻿@model List<WebS2TSTORE.Models.SanPham>
+
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1 class="mt-4">QUẢN LÝ SẢN PHẨM</h1>
+<div class="card-header">
+    <p>
+        @Html.ActionLink("THÊM MỚI", "CreateProduct")
+    </p>
+</div>
+<div class="row">
+    <div class="card mb-4">
+       
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th style="width: 2%">Mã TH</th>
+                        <th style="width: 10%">Tên</th>
+                        <th style="width: 20%">Ảnh sản phẩm</th>
+                        <th style="width: 53%">Mô tả</th>
+                        <th style="width: 10%">Giá</th>
+                        <th style="width: 5%">Size</th>
+                        <th style="width: 5%">Số lượng</th>
+                        <th style="width: 5%">Tình trạng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã thương hiệu</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Mô tả</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Size</th>
+                        <th>Số lượng</th>
+                        <th>Tình trạng</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.maTH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tenSP)
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <img src="~/Content/images/@item.image" width="120px" height="140px">
+                                <div class="dropdown-content">
+                                    <div class="desc">Ảnh cover 1</div>
+                                    <li class="dropdown-item"><img src="~/Content/images/@item.image1" alt="" width="120px" height="140px"></li>
+                                    <div class="desc">Ảnh cover 2</div>
+                                    <li class="dropdown-item"><img src="~/Content/images/@item.image2" alt="" width="120px" height="140px"></li>
+                                    <div class="desc">Ảnh cover 3</div>
+                                    <li class="dropdown-item"><img src="~/Content/images/@item.image3" alt="" width="120px" height="140px"></li>
+                                    <div class="desc">Ảnh cover 4</div>
+                                    <li class="dropdown-item"><img src="~/Content/images/@item.image4" alt="" width="120px" height="140px"></li>
+
+                                </div>
+                            </div>
+
+                            <style>
+                                .dropdown {
+                                    position: relative;
+                                    display: inline-block;
+                                }
+
+                                .dropdown-content {
+                                    display: none;
+                                    position: absolute;
+                                    background-color: #f9f9f9;
+                                    min-width: 80px;
+                                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                                    z-index: 1;
+                                }
+
+                                .dropdown:hover .dropdown-content {
+                                    display: block;
+                                }
+
+                                .desc {
+                                    padding: 8px;
+                                    text-align: center;
+                                }
+                            </style>
+                        </td>
+                        <td>
+                            @*@Truncate(item.moTa, 100)*@
+                            @Html.Raw(item.moTa)
+                            
+                        </td>
+                        <td>s
+                            @Html.DisplayFor(modelItem => item.giaBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.size)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soLuong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tinhTrang)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "EditPro", new { id = item.maSP }) |
+                            @Html.ActionLink("Chi tiết", "DetailPro", new { id = item.maSP }) |
+                            @Html.ActionLink("Xóa", "DelPro", new { id = item.maSP })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

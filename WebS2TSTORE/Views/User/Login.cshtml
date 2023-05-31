@@ -1,0 +1,38 @@
+﻿<!------ Include the above in your HEAD tag ---------->
+<link href="@Url.Content("~/Content/css/login.css")" rel="stylesheet">
+<link href="@Url.Content("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")" rel="stylesheet" id="bootstrap-css">
+<script src="@Url.Content("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Login form-->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2 style="color: #007ACC; margin-top: 10px">Đăng nhập tài khoản</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <!-- Tabs Titles -->
+            <form>
+                <input type="text" name="login" placeholder="Tên đăng nhập" required />
+                <input type="password" name="password" placeholder="Mật khẩu" required />
+                <input type="submit" value="Đăng nhập">
+            </form>
+
+            <h4 style="text-align:center; color:red">
+                @ViewBag.ThongBao
+            </h4>
+
+            <!-- Sign up -->
+            <div id="formFooter">
+                <a href="@Url.Action("SignUp", "User")" class=" underlineHover">
+                    Đăng ký tài khoản!
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿<!------ Include the above in your HEAD tag ---------->
+<link href="@Url.Content("~/Content/css/login.css")" rel="stylesheet">
+<link href="@Url.Content("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")" rel="stylesheet" id="bootstrap-css">
+<script src="@Url.Content("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")"></script>
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Sig up form-->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 style="color: #007ACC; margin-top: 10px">Đăng ký tài khoản</h2>
+        @using (Html.BeginForm())
+        {
+            <form>
+                @Html.ValidationSummary(true)
+                <input type="text" id="fullname" name="fullname" placeholder="Họ tên" required />
+                <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required />
+                <input type="password" id="password" name="password" placeholder="Mật khẩu" required />
+                <input type="password" id="passwordagain" name="passwordagain" placeholder="Nhập lại mật khẩu" required />
+                <input type="text" id="number" name="phone" placeholder="Số điện thoại" required />
+                <input type="date" id="dateofbirth" name="dateofbirth" placeholder="Ngày sinh" />
+                <input type="text" id="addr" name="addr" placeholder="Địa chỉ" />
+                <input type="text" id="email" name="email" placeholder="Email" required />
+                <input type="submit" value="Đăng ký">
+            </form>
+        
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a href="@Url.Action("LogIn", "User")" class="underlineHover">
+                    Đã có tài khoản!
+                </a>
+            </div>
+        }
+        </div>
+</div>

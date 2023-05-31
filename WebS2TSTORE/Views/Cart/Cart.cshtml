@@ -1,0 +1,103 @@
+﻿@using WebS2TSTORE.Models
+@model List<Cart>
+<link rel="stylesheet" href="css/cart.css">
+<script src="js/cart.js"></script>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Giỏ hàng -->
+
+<h2 class="text-center">Giỏ hàng của bạn</h2>
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width: 35%">Tên sản phẩm</th>
+                <th style="width: 10%">Số lượng</th>
+                <th style="width: 10%">Giá</th>
+                <th style="width: 8%">Size</th>
+                <th style="width: 15%">Tổng tiền</th>
+                <th style="width: 22%"></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">@item.gTenSP</h4>
+                                <img src="~/Content/images/@item.gImage" alt="" width="120px" height="140px">
+                            </div>
+                        </div>
+                    </td>
+                    @using (Html.BeginForm("CapnhatGiohang", "Cart", new { gIDProduct = item.gMaSP }))
+                    {
+                        <td data-th="Quantity">
+                            <input class="form-control text-center" type="number" min="1" name="txtSoluong" value="@item.gSoLuong" />
+                        </td>
+                        <td data-th="Price">@String.Format("{0:0,0}", item.gGiaBan)</td>
+                        <td data-th="Size">@item.gSize</td>
+                        <td>@String.Format("{0:0,0}", item.gTong) </td>
+                        <td class="actions" data-th="">
+                            <a href="@Url.Action("Details", "Default", new { id = item.gMaSP})" 
+                               style="text-decoration: none; width: 90px; background-color: #282A36; color: white; border: 2px solid black; " class="btn btn-danger btn-sm">
+                                Chi tiết
+                            </a>
+                            <a href="@Url.Action("XoaGiohang","Cart", new { @gMaPRoduct = item.gMaSP })" 
+                               style="text-decoration: none; width: 90px; background-color: #282A36; color: orangered; border: 2px solid black; " class="btn btn-danger btn-sm">
+                                Xóa
+                            </a>
+                            <input type="submit" class="btn btn-danger btn-sm" value="Cập Nhật" 
+                                   style="width: 90px; margin-top: 10px; background-color: #282A36; color: deepskyblue; border: 2px solid black; " />
+                        </td>
+
+
+                    }
+
+                </tr>
+                <!-- end -->
+
+            </tbody>
+        }
+
+        <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center"><strong>Tổng số lượng: @ViewBag.Tongsoluong</strong></td>
+            </tr>
+            <br class="visible-xs" />
+            <tr class="visible-xs">
+                <td class="text-center"><strong>Tổng đơn hàng: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</strong></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Category", "Default")" 
+                       style="background-color: #282A36; color: white; border: 2px solid black; " class="btn btn-warning">Tiếp tục mua hàng</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("XoaTatcaGiohang")" 
+                       style="text-decoration: none; text-align: center; width: 140px; background-color: #282A36; color: red; border: 2px solid black; margin-left: 150px;" class="btn btn-warning">
+                        Xóa Giỏ Hàng
+                    </a>
+                </td>
+                <td colspan="4" class="hiddenvisiblexs"></td>
+                <td>
+                    @*@Html.ActionLink("Xác nhận","Order", "User", null, new { @class = "btn btn-success btn-block" })
+                        <a href="@Url.Action("Order", "User")" class="btn btn-success btn-block">
+                            Xác nhận
+                        </a>*@
+                    <a href="@Url.Action("Order", "Cart")">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button" style="background-color: #282A36; color: greenyellow; border: 2px solid black; ">
+                            Xác nhận
+                        </button>
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tfoot>
+    </table>
+</div>

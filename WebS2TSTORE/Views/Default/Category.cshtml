@@ -1,0 +1,62 @@
+﻿@model List<WebS2TSTORE.Models.SanPham>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Category -->
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Tất cả sản phẩm</h1>
+            <p class="lead fw-normal text-white-50 mb-0"></p>
+        </div>
+    </div>
+</header>
+<!-- Category -->
+@Html.Action("Catalog", "Default")
+<section class="py-5">
+    <!-- Product -->
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <tr>
+                @foreach (var pro in Model)
+                {<!-- Div product -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">@pro.tinhTrang</div>
+                            <!-- Product image-->
+                            <a href="@Url.Action("Details","Default", new {id = pro.maSP })">
+                                <img class="card-img-top" src="~/Content/images/@pro.image" alt="@pro.tenSP"
+                                     style="height: 300px;" />
+                            </a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@pro.tenSP</h5>
+                                    <h6 style="text-align:center">Size: @pro.size</h6>
+                                    <!-- Product price-->
+                                    @String.Format("{0:0,0}", @pro.giaBan) vnđ
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="@Url.Action("Details","Default", new {id = pro.maSP})">
+                                        Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" style="text-align:center" data-width="200px" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v11.0" nonce="ynpa920p"></script>
+                        </div>
+                    </div>
+                }
+            </tr>
+        </div>
+    </div>
+</section>

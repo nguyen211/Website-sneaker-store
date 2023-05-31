@@ -1,0 +1,140 @@
+﻿@using WebS2TSTORE.Models
+@model List<Cart>
+
+<link rel="stylesheet" href="css/cart.css">
+<script src="js/cart.js"></script>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Giỏ hàng -->
+<h2 class="text-center">Xác nhận đơn hàng</h2>
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width: 50%">Tên sản phẩm</th>
+                <th style="width: 10%">Số lượng</th>
+                <th style="width: 10%">Giá</th>
+                <th style="width: 10%">Size</th>
+                <th style="width: 15%">Tổng tiền</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">@item.gTenSP</h4>
+                                <img src="~/Content/images/@item.gImage" alt="" width="120px" height="140px">
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Quantity">@item.gSoLuong</td>
+                    <td data-th="Price">@String.Format("{0:0,0}", item.gGiaBan)</td>
+                    <td data-th="Size">@item.gSize</td>
+                    <td>@String.Format("{0:0,0}", item.gTong) </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    <foot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong>Tổng số lượng: @ViewBag.Tongsoluong</strong></td>
+        </tr>
+        <br class="visible-xs" />
+        <tr class="visible-xs">
+            <td class="text-center"><strong>Tổng đơn hàng: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <a href="@Url.Action("Cart", "Cart")" class="btn"
+                   style="width: 100%; font-size: 16px; background-color: #212529; color: white; border-radius: 2px solid black;" ">Trở lại giỏ hàng</a>
+            </td>
+            <td colspan="2" class="hidden-xs"></td>
+            <h2 style="text-align:center">THÔNG TIN ĐẶT HÀNG</h2>
+            @{
+                KhachHang kh = (KhachHang)Session["Taikhoan"];
+            }
+            <table align="center">
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <tr style="height:40px">
+                        <td> Họ tên khách hàng:</td>
+                        <td style="font-weight:bold">  @kh.hoTen </td>
+                    </tr>
+                    <tr style="height:40px">
+                        <td> Địa chỉ:</td>
+                        <td style="font-weight:bold">  @kh.diaChi </td>
+                    </tr>
+                    <tr style="height:40px">
+                        <td> Địện thoại:</td>
+                        <td style="font-weight:bold">  @kh.sdt </td>
+                    </tr>
+
+                    <tr style="height:40px">
+                        <td> Ngày đặt:</td>
+                        <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+                    </tr>
+                    <tr style="height:40px">
+                        <td> Dự kiến ngày muốn nhận hàng:</td>
+                        <td style="font-weight:bold">
+                            <input type="date" name="Ngaygiao" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="Submit" value="ĐỒNG Ý ĐẶT HÀNG" style="width: 100%; font-size: 24px; background-color: #212529; color: greenyellow; border-radius: 8px solid black;" class="btn btn-warning" />
+                        </td>
+                    </tr>
+
+                }
+            </table>
+        </tr>
+    </foot>
+
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AeeWvUqvUEMLI5HHqmhtdLM2W5T2Q0PgDITH-_clhBLuze-dAXL59PdDL8lS79kDyPXaaeSD8rIhWbOh
+"></script>
+
+<!-- Set up a container element for the button -->
+<div id="paypal-button-container" style="margin: 30px 700px"></div>
+
+<script>
+      paypal.Buttons({
+
+        // Sets up the transaction when a payment button is clicked
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value:@ViewBag.Tongtien // Can reference variables or functions. Example: value: document.getElementById('...').value
+              }
+            }]
+          });
+        },
+
+        // Finalize the transaction after payer approval
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // var element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '';
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+          });
+        }
+      }).render('#paypal-button-container');
+
+</script>

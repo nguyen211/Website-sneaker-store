@@ -1,0 +1,81 @@
+﻿@model WebS2TSTORE.Models.LienHe
+
+    ;
+    @{
+        ViewBag.Title = "DelCon";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <h2>Xóa liên hệ</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Họ tên
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.hoTen)
+            </dd>
+
+            <dt>
+                Email
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt>
+                Số điện thoại
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.sdt)
+            </dd>
+
+            <dt>
+                Tiên đề
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tieuDe)
+            </dd>
+
+            <dt>
+                Nội dung
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.noiDung)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Contact")
+            </div>
+        }
+    </div>
+
+    <style>
+        dl {
+            margin-left: 100px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
